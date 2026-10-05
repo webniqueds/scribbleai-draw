@@ -285,7 +285,7 @@ function ReadyStage({ battle, now, busy, onReady }: { battle: BattleDetail; now:
         <MiniRoster battle={battle} side="B" now={now} />
       </div>
       {me?.status === 'accepted' ? (
-        <button className="gbtn" style={{ width: '100%', justifyContent: 'center', marginTop: 10, background: me.ready ? 'var(--kid-green)' : 'var(--accent)', color: '#fff', fontWeight: 800 }} onClick={onReady} disabled={busy || me.ready}>
+        <button className="gbtn" style={{ width: '100%', justifyContent: 'center', marginTop: 10, background: me.ready ? 'var(--kid-green)' : 'var(--emerald-deep)', color: '#fff', fontWeight: 800 }} onClick={onReady} disabled={busy || me.ready}>
           {me.ready ? <><Check size={14} /> You&rsquo;re ready</> : busy ? 'Marking…' : 'I’m Ready'}
         </button>
       ) : (
@@ -525,7 +525,7 @@ function DrawingStage({
                   </div>
                 </>
               ) : (
-                <button className="gbtn" style={{ width: '100%', justifyContent: 'center', marginTop: 9, background: 'var(--accent)', color: '#fff', fontWeight: 800 }} onClick={startTurn} disabled={busy}>
+                <button className="gbtn" style={{ width: '100%', justifyContent: 'center', marginTop: 9, background: 'var(--emerald-deep)', color: '#fff', fontWeight: 800 }} onClick={startTurn} disabled={busy}>
                   <Play size={14} /> {busy ? 'Loading…' : 'Start my turn'}
                 </button>
               )
@@ -1092,7 +1092,7 @@ export default function CompetitionsModal({ onClose, sourceGroup, getStrokes, se
                   <div style={{ fontSize: 13, fontWeight: 700 }}>No live battles</div>
                   <div style={{ fontSize: 11, color: 'var(--text-dim)', margin: '4px 0 10px' }}>Challenge a friend 1v1, or another group, and the duel shows up here.</div>
                   {canBattle ? (
-                    <button className="gbtn" style={{ justifyContent: 'center', background: 'var(--accent)', color: '#fff' }} onClick={() => setTab('create')}>Start your first battle</button>
+                    <button className="gbtn" style={{ justifyContent: 'center', background: 'var(--emerald-deep)', color: '#fff' }} onClick={() => setTab('create')}>Start your first battle</button>
                   ) : (
                     <div style={{ fontSize: 10.5, color: 'var(--text-dim)' }}>Starting battles is not in your current plan.</div>
                   )}
@@ -1147,7 +1147,7 @@ export default function CompetitionsModal({ onClose, sourceGroup, getStrokes, se
                   <div className="gmini" title="Random prompt" onClick={canBattle ? randomPrompt : undefined}><RefreshCw size={14} /></div>
                 </div>
 
-                <button className="gbtn" style={{ width: '100%', justifyContent: 'center', marginTop: 12, background: 'var(--accent)', color: '#fff', fontWeight: 800 }} onClick={createBattle} disabled={busy || !canBattle || !friends.length}>
+                <button className="gbtn" style={{ width: '100%', justifyContent: 'center', marginTop: 12, background: 'var(--emerald-deep)', color: '#fff', fontWeight: 800 }} onClick={createBattle} disabled={busy || !canBattle || !friends.length}>
                   {busy ? 'Sending…' : '⚡ Challenge'}
                 </button>
               </>
@@ -1200,7 +1200,7 @@ export default function CompetitionsModal({ onClose, sourceGroup, getStrokes, se
                       <div className="gmini" title="Random prompt" onClick={canBattle ? randomPrompt : undefined}><RefreshCw size={14} /></div>
                     </div>
 
-                    <button className="gbtn" style={{ width: '100%', justifyContent: 'center', marginTop: 12, background: 'var(--accent)', color: '#fff', fontWeight: 800 }} onClick={createBattle} disabled={busy || !canBattle}>
+                    <button className="gbtn" style={{ width: '100%', justifyContent: 'center', marginTop: 12, background: 'var(--emerald-deep)', color: '#fff', fontWeight: 800 }} onClick={createBattle} disabled={busy || !canBattle}>
                       {busy ? 'Starting…' : '⚡ Start battle'}
                     </button>
                   </>

@@ -59,7 +59,7 @@ function StageVisual() {
         <svg className="lp-stage-stroke" viewBox="0 0 400 300" fill="none" aria-hidden="true">
           <path
             d="M78 214c30-18 46-52 62-84s34-54 62-46 40 40 62 52 44 8 58-10"
-            stroke="#246a56"
+            stroke="#c2410c"
             strokeWidth="6"
             strokeLinecap="round"
           />
@@ -71,7 +71,7 @@ function StageVisual() {
           />
           <path
             d="M132 92c22-14 48-16 68-6"
-            stroke="#3a967a"
+            stroke="#f59e4b"
             strokeWidth="4"
             strokeLinecap="round"
           />
@@ -88,7 +88,7 @@ function StageVisual() {
           <Palette size={14} />
         </div>
         <div className="lp-stage-hud lp-stage-hud--color">
-          <span className="lp-stage-chip" style={{ background: '#3a967a' }} />
+          <span className="lp-stage-chip" style={{ background: '#f59e4b' }} />
         </div>
       </div>
     </div>
@@ -248,13 +248,13 @@ export default function LandingScreen({ onGetStarted }: Props) {
         >
           <div style={{ display: 'grid', gap: 44, gridTemplateColumns: 'repeat(auto-fit, minmax(min(290px, 100%), 1fr))', alignItems: 'center' }}>
             <div>
-              <span className="lp-eyebrow" style={{ color: '#f0d8c0' }}>
+              <span className="lp-eyebrow" style={{ color: '#ffcf9e' }}>
                 The studio
               </span>
               <h2 className="lp-h2" style={{ marginTop: 16, fontSize: 'clamp(1.7rem, 3.2vw, 2.4rem)' }}>
                 The camera feed is the page.
               </h2>
-              <p style={{ marginTop: 16, fontSize: '1rem', lineHeight: 1.7, color: 'rgba(241,238,232,0.76)' }}>
+              <p style={{ marginTop: 16, fontSize: '1rem', lineHeight: 1.7, color: 'rgba(255,246,236,0.78)' }}>
                 You are never looking at a small preview in the corner. The live camera fills the
                 whole screen and your drawing lands on top of it, so what you are looking at is
                 what you are drawing on. The tools float above the edge of the frame and stay out
@@ -267,15 +267,15 @@ export default function LandingScreen({ onGetStarted }: Props) {
                 { Icon: Cloud, title: 'Nothing is lost', text: 'Strokes are stored as you draw them, not when you press save.' },
                 { Icon: History, title: 'Back out of mistakes', text: 'Undo a single stroke, clear the page, or return to an earlier checkpoint.' },
               ].map((f) => (
-                <div key={f.title} className="auth-fact" style={{ color: 'rgba(241,238,232,0.8)' }}>
+                <div key={f.title} className="auth-fact" style={{ color: 'rgba(255,246,236,0.82)' }}>
                   <span
                     className="auth-fact-icon"
-                    style={{ color: '#f0d8c0', background: 'rgba(240,216,192,0.14)', borderColor: 'rgba(240,216,192,0.22)' }}
+                    style={{ color: '#ffcf9e', background: 'rgba(255,207,158,0.14)', borderColor: 'rgba(255,207,158,0.24)' }}
                   >
                     <f.Icon size={15} strokeWidth={2} />
                   </span>
                   <div>
-                    <span style={{ color: '#f6f4ef', fontWeight: 600 }}>{f.title}. </span>
+                    <span style={{ color: '#fff8f2', fontWeight: 600 }}>{f.title}. </span>
                     {f.text}
                   </div>
                 </div>
@@ -343,7 +343,7 @@ export default function LandingScreen({ onGetStarted }: Props) {
                     return (
                       <div key={f.key} className={'lp-plan-feat' + (on ? '' : ' lp-plan-feat--off')}>
                         {on ? (
-                          <Check size={15} style={{ color: featured ? '#f0d8c0' : 'var(--emerald)' }} />
+                          <Check size={15} style={{ color: featured ? '#ffcf9e' : 'var(--emerald-deep)' }} />
                         ) : (
                           <Minus size={15} style={{ opacity: 0.5 }} />
                         )}
@@ -353,7 +353,7 @@ export default function LandingScreen({ onGetStarted }: Props) {
                   })}
                   <div className={'lp-plan-feat' + (plan.galleryLimit === -1 ? '' : ' lp-plan-feat--off')}>
                     {plan.galleryLimit === -1 ? (
-                      <Check size={15} style={{ color: featured ? '#f0d8c0' : 'var(--emerald)' }} />
+                      <Check size={15} style={{ color: featured ? '#ffcf9e' : 'var(--emerald-deep)' }} />
                     ) : (
                       <Minus size={15} style={{ opacity: 0.5 }} />
                     )}
@@ -393,7 +393,7 @@ export default function LandingScreen({ onGetStarted }: Props) {
           <h2 className="lp-h2" style={{ fontSize: 'clamp(1.8rem, 3.4vw, 2.6rem)' }}>
             Ready to draw in the air?
           </h2>
-          <p className="lp-lead" style={{ marginTop: 16, margin: '16px auto 0', maxWidth: '30rem', color: 'rgba(241,238,232,0.78)' }}>
+          <p className="lp-lead" style={{ marginTop: 16, margin: '16px auto 0', maxWidth: '30rem', color: 'rgba(255,246,236,0.8)' }}>
             Allow camera access, hold up one finger, and the first line is a second away.
           </p>
           <button type="button" className="lp-btn lp-btn-warm" style={{ marginTop: 32 }} onClick={onGetStarted}>

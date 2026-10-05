@@ -226,7 +226,7 @@ export default function SubscriptionModal({
                     {pl.galleryLimit === -1 ? 'Unlimited drawings' : `${pl.galleryLimit} drawings max`}
                   </div>
                 </div>
-                <div className="gbtn" style={{ marginTop: 8, background: busyId === pl.id ? 'var(--kid-blue)' : 'var(--accent)', color: '#fff', justifyContent: 'center' }}>
+                <div className="gbtn" style={{ marginTop: 8, background: busyId === pl.id ? 'var(--kid-blue)' : 'var(--emerald-deep)', color: '#fff', justifyContent: 'center' }}>
                   {busyId === pl.id ? 'Opening…' : 'Subscribe'}
                 </div>
               </div>

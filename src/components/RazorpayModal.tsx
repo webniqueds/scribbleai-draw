@@ -138,23 +138,33 @@ export default function RazorpayModal({ title, description, amount, onClose, onS
         style={{
           width: 360,
           maxWidth: '92vw',
-          borderRadius: 14,
+          borderRadius: 'var(--r-lg)',
           overflow: 'hidden',
-          background: '#fff',
-          color: '#1a1a2e',
-          fontFamily: "'Space Grotesk', sans-serif",
-          boxShadow: '0 30px 90px -20px rgba(0,0,0,0.6)',
+          background: 'var(--modal-bg)',
+          backdropFilter: 'blur(28px) saturate(1.3)',
+          WebkitBackdropFilter: 'blur(28px) saturate(1.3)',
+          border: '1px solid var(--panel-border)',
+          color: 'var(--text)',
+          fontFamily: 'var(--font)',
+          boxShadow: 'var(--shadow-float), var(--glass-hi)',
         }}
       >
-        <div style={{ background: '#072654', padding: '16px 18px', color: '#fff' }}>
+        <div
+          style={{
+            background:
+              'radial-gradient(120% 140% at 12% 0%, rgba(245,158,75,0.34), transparent 62%), linear-gradient(155deg, #241a15, #3a2a20)',
+            padding: '16px 18px',
+            color: '#fff8f2',
+          }}
+        >
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <div
                 style={{
                   width: 26,
                   height: 26,
-                  borderRadius: 6,
-                  background: '#3399cc',
+                  borderRadius: 8,
+                  background: 'linear-gradient(150deg, #f79a4a, #c2410c)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -167,14 +177,14 @@ export default function RazorpayModal({ title, description, amount, onClose, onS
               <span style={{ fontWeight: 600, fontSize: 14 }}>Razorpay</span>
             </div>
           </div>
-          <div style={{ marginTop: 10, fontSize: 12.5, opacity: 0.85 }}>{title}</div>
-          <div style={{ fontSize: 22, fontWeight: 700, marginTop: 2 }}>₹{amount}</div>
+          <div style={{ marginTop: 10, fontSize: 12.5, color: 'rgba(255,246,236,0.82)' }}>{title}</div>
+          <div style={{ fontSize: 22, fontWeight: 700, marginTop: 2, letterSpacing: '-0.03em' }}>₹{amount}</div>
         </div>
 
         <div style={{ padding: 18 }}>
           {step === 'method' && (
             <>
-              <div style={{ fontSize: 11.5, color: '#666', marginBottom: 10 }}>{description}</div>
+              <div style={{ fontSize: 11.5, color: 'var(--text-dim)', marginBottom: 10 }}>{description}</div>
               {(
                 [
                   { id: 'upi', label: 'UPI', hint: 'Pay securely with Razorpay' },
@@ -190,23 +200,26 @@ export default function RazorpayModal({ title, description, amount, onClose, onS
                     justifyContent: 'space-between',
                     alignItems: 'center',
                     padding: '11px 12px',
-                    borderRadius: 9,
-                    border: method === m.id ? '1.5px solid #3399cc' : '1.5px solid #e5e5e5',
-                    background: method === m.id ? '#f0f9ff' : '#fff',
+                    borderRadius: 12,
+                    border: method === m.id ? '1.5px solid var(--emerald-deep)' : '1px solid var(--card-border)',
+                    background: method === m.id ? 'rgba(245,158,75,0.12)' : 'var(--card-bg)',
                     marginBottom: 8,
                     cursor: 'pointer',
+                    transition: 'background 180ms, border-color 180ms',
                   }}
                 >
                   <div>
-                    <div style={{ fontSize: 13, fontWeight: 500 }}>{m.label}</div>
-                    <div style={{ fontSize: 10.5, color: '#888' }}>{m.hint}</div>
+                    <div style={{ fontSize: 13, fontWeight: 600, color: method === m.id ? 'var(--emerald-deep)' : 'var(--text)' }}>
+                      {m.label}
+                    </div>
+                    <div style={{ fontSize: 10.5, color: 'var(--text-faint)' }}>{m.hint}</div>
                   </div>
                   <div
                     style={{
                       width: 16,
                       height: 16,
                       borderRadius: '50%',
-                      border: method === m.id ? '5px solid #3399cc' : '1.5px solid #ccc',
+                      border: method === m.id ? '5px solid var(--emerald-deep)' : '1.5px solid var(--card-border)',
                     }}
                   />
                 </div>
@@ -217,20 +230,21 @@ export default function RazorpayModal({ title, description, amount, onClose, onS
                   width: '100%',
                   marginTop: 6,
                   padding: 12,
-                  borderRadius: 9,
+                  borderRadius: 'var(--r-btn)',
                   border: 'none',
-                  background: '#3399cc',
-                  color: '#fff',
-                  fontWeight: 600,
+                  background: 'var(--emerald-deep)',
+                  color: '#fff8f2',
+                  fontWeight: 700,
                   fontSize: 13,
                   cursor: 'pointer',
+                  boxShadow: 'var(--shadow-cta)',
                 }}
               >
                 {method === 'upi' ? `Pay ₹${amount} via UPI` : 'Continue'}
               </button>
               <div
                 onClick={onClose}
-                style={{ textAlign: 'center', fontSize: 11.5, color: '#999', marginTop: 12, cursor: 'pointer' }}
+                style={{ textAlign: 'center', fontSize: 11.5, color: 'var(--text-faint)', marginTop: 12, cursor: 'pointer' }}
               >
                 Cancel
               </div>
@@ -281,20 +295,21 @@ export default function RazorpayModal({ title, description, amount, onClose, onS
                   width: '100%',
                   marginTop: 14,
                   padding: 12,
-                  borderRadius: 9,
+                  borderRadius: 'var(--r-btn)',
                   border: 'none',
-                  background: '#3399cc',
-                  color: '#fff',
-                  fontWeight: 600,
+                  background: 'var(--emerald-deep)',
+                  color: '#fff8f2',
+                  fontWeight: 700,
                   fontSize: 13,
                   cursor: 'pointer',
+                  boxShadow: 'var(--shadow-cta)',
                 }}
               >
                 Pay ₹{amount}
               </button>
               <div
                 onClick={() => setStep('method')}
-                style={{ textAlign: 'center', fontSize: 11.5, color: '#999', marginTop: 12, cursor: 'pointer' }}
+                style={{ textAlign: 'center', fontSize: 11.5, color: 'var(--text-faint)', marginTop: 12, cursor: 'pointer' }}
               >
                 Back
               </div>
@@ -309,12 +324,12 @@ export default function RazorpayModal({ title, description, amount, onClose, onS
                   height: 34,
                   margin: '0 auto 14px',
                   borderRadius: '50%',
-                  border: '3px solid #e5e5e5',
-                  borderTopColor: '#3399cc',
+                  border: '3px solid var(--card-border)',
+                  borderTopColor: 'var(--emerald)',
                   animation: 'spin 0.8s linear infinite',
                 }}
               />
-              <div style={{ fontSize: 12.5, color: '#555' }}>Opening Razorpay Checkout…</div>
+              <div style={{ fontSize: 12.5, color: 'var(--text-dim)' }}>Opening Razorpay Checkout…</div>
             </div>
           )}
 
@@ -326,7 +341,7 @@ export default function RazorpayModal({ title, description, amount, onClose, onS
                   height: 42,
                   margin: '0 auto 12px',
                   borderRadius: '50%',
-                  background: '#22c55e',
+                  background: 'var(--leaf)',
                   color: '#fff',
                   display: 'flex',
                   alignItems: 'center',
@@ -337,7 +352,7 @@ export default function RazorpayModal({ title, description, amount, onClose, onS
                 ✓
               </div>
               <div style={{ fontSize: 13.5, fontWeight: 600 }}>Payment successful</div>
-              <div style={{ fontSize: 11, color: '#888', marginTop: 2 }}>Unlocking cartoons…</div>
+              <div style={{ fontSize: 11, color: 'var(--text-faint)', marginTop: 2 }}>Unlocking cartoons…</div>
             </div>
           )}
 
@@ -349,7 +364,7 @@ export default function RazorpayModal({ title, description, amount, onClose, onS
                   height: 42,
                   margin: '0 auto 12px',
                   borderRadius: '50%',
-                  background: '#ef4444',
+                  background: 'var(--clay)',
                   color: '#fff',
                   display: 'flex',
                   alignItems: 'center',
@@ -360,7 +375,7 @@ export default function RazorpayModal({ title, description, amount, onClose, onS
                 !
               </div>
               <div style={{ fontSize: 13.5, fontWeight: 600 }}>Payment couldn't start</div>
-              <div style={{ fontSize: 11, color: '#888', marginTop: 2, wordBreak: 'break-word' }}>
+              <div style={{ fontSize: 11, color: 'var(--text-faint)', marginTop: 2, wordBreak: 'break-word' }}>
                 {errorMessage || 'Please try again.'}
               </div>
               <button
@@ -369,13 +384,14 @@ export default function RazorpayModal({ title, description, amount, onClose, onS
                   width: '100%',
                   marginTop: 14,
                   padding: 12,
-                  borderRadius: 9,
+                  borderRadius: 'var(--r-btn)',
                   border: 'none',
-                  background: '#3399cc',
-                  color: '#fff',
-                  fontWeight: 600,
+                  background: 'var(--emerald-deep)',
+                  color: '#fff8f2',
+                  fontWeight: 700,
                   fontSize: 13,
                   cursor: 'pointer',
+                  boxShadow: 'var(--shadow-cta)',
                 }}
               >
                 Try again
@@ -392,9 +408,11 @@ export default function RazorpayModal({ title, description, amount, onClose, onS
 const detailsInputStyle: CSSProperties = {
   width: '100%',
   padding: '11px 12px',
-  borderRadius: 9,
-  border: '1.5px solid #e5e5e5',
+  borderRadius: 'var(--r-btn)',
+  border: '1px solid var(--card-border)',
+  background: 'var(--input-bg)',
+  color: 'var(--text)',
   fontSize: 13,
   outline: 'none',
-  fontFamily: "'Space Grotesk', sans-serif",
+  fontFamily: 'var(--font)',
 };
