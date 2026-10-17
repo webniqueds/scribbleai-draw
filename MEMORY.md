@@ -1,6 +1,6 @@
 # MEMORY — Session Handoff
 
-Continuity notes for working on **Scribble Air Draw** (repo `Abpattar/scribble-air-draw`,
+Continuity notes for working on **Scribble Air Draw** (repo `webniqueds/scribbleai-draw`,
 previously `scribble-ai`; codebase directory `NeonAir-main`). Read this first
 in any new session so nothing is missed.
 
@@ -101,13 +101,13 @@ ids then `POST /v10/projects/{id}/env?upsert=true`.
   "Diablo"), `subscribed: true`, `plan: monthly`, `subscribedUntil: 2026-10-13`
   (this was reset when he cancelled during testing — verify current state).
 - Free test accounts: user `user_3IXmc6awk4o3CIgYn0bcWsP7BrE` and
-  `user_3IY4LSKE5a5G9KJ4Q3ijBSGU46g` (both nickname "Aditya").
+  `user_3IY4LSKE5a5G9KJ4Q3ijBSGU46g` (nicknames redacted).
 - Plans live in `plans` collection: `free` (limited), `monthly` ₹99, `yearly`
   ₹999, with correct PRO feature flags.
 
 ## 6. What was fixed recently (session log, newest last)
 
-- **`c206152` failed to deploy — Hobby 12-function limit.** Not a code bug: the
+- **`69a6c78` failed to deploy — Hobby 12-function limit.** Not a code bug: the
   build and all 185 battle checks were green. Vercel counts every `.js` under
   `api/`, and the commit left 8 handlers + 5 files in `api/lib/` = **13**.
   `api/lib/` → `api-lib/` (imports become `../api-lib/…`, including the
@@ -177,28 +177,28 @@ ids then `POST /v10/projects/{id}/env?upsert=true`.
 
 - **Production is two commits behind and the live alias is stale.** The GitHub
   integration IS working (push → `vercel[bot]` deploys automatically), but:
-  - `c206152` (battles/requests hub) — **deployment FAILED** on 2026-09-27
+  - `69a6c78` (battles/requests hub) — **deployment FAILED** on 2026-09-27
     (function count, §6). Fixed by moving `api/lib/` → `api-lib/`.
-  - `54efde3` (floating-UI redesign) — deployment succeeded, but
+  - `06e36f9` (floating-UI redesign) — deployment succeeded, but
     `scribble-ai.vercel.app` still serves a **pre-redesign** bundle
     (no `My Drawings` / `Brush size` strings in the live JS), i.e. the
     production alias is pinned to an older deployment. Re-pin after the next
     successful deploy, and verify with a string that only exists in the new
     bundle, not just the hash.
-- Older: `6b2acbb` (real submit + 2-wave groups/friends + fail-fast Mongo),
-  `6dac296` (untrack prompt.txt), `60b886f`, `d5603ea`, `5ee1d50`, `617e09e`,
-  `c87c107`, `12cba2c`.
+- Older: `86ec978` (real submit + 2-wave groups/friends + fail-fast Mongo),
+  `7fb0e76` (untrack prompt.txt), `efc83d8`, `e3227b7`, `ef3a553`, `34d3ded`,
+  `7674564`, `9db17d3`.
 - Live: `https://scribble-ai.vercel.app` (alias pinned manually after every
   deploy; per-deploy URLs look like
-  `scribble-xxxxxxxx-adityas-projects-cf1e02fd.vercel.app`). Project id in
+  `<project>-<hash>.vercel.app`). Project id in
   `.vercel/project.json` (`prj_y0H0V26pK6j1aJwF7igTOiIujo1n`, team
   `team_Kxe5J05W0LbH6jFkxmKW1vdE`).
 - **The saved Vercel CLI token is dead** (API answers `403 invalidToken` for
   `v2/user`), so `vercel` cannot inspect, deploy or re-pin until you run
   `vercel login` again. GitHub auto-deploy does not need it.
-- GitHub CLI (`gh`) is authed as `Abpattar`. To check a push's deploy result
+- GitHub CLI (`gh`) is authed as `webniqueds`. To check a push's deploy result
   without the Vercel token:
-  `gh api repos/Abpattar/scribble-air-draw/commits/<sha>/status --jq '.statuses[].state'`
+  `gh api repos/webniqueds/scribbleai-draw/commits/<sha>/status --jq '.statuses[].state'`
   (and `.../commits/<sha>/status` description names the failed deployment id).
 
 ## 8. Handy commands

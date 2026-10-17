@@ -1,7 +1,7 @@
 # Scribble Air Draw — PRD, System Architecture & Working Document
 
 **Product name:** Scribble Air Draw *(legacy codenames: "NeonAir" / "Neon Air Draw" / `neon-air-draw`)*
-**Repo:** `Abpattar/scribble-air-draw` — working directory `NeonAir-main`
+**Repo:** `webniqueds/scribbleai-draw` — working directory `NeonAir-main`
 **Stack:** React 18 + TypeScript + Vite + Tailwind · Clerk auth · MongoDB (Atlas) · Razorpay billing · Vercel serverless
 
 This document is the single source of truth for *what* the product is, *how* it is built, and *how to work on it*. It is organised in four parts:
@@ -481,8 +481,8 @@ POST `/api/razorpay-webhook` validates `x-razorpay-signature` against `RAZORPAY_
 | Vite dev | `http://localhost:5173` |
 | Local API | `http://127.0.0.1:8787+` (auto-picked free port) |
 | Prod alias | `https://scribble-ai.vercel.app` (manual re-alias after deploy) |
-| Vercel project | `scribble-hcfo26h6q-adityas-projects-cf1e02fd.vercel.app` |
-| GitHub | `Abpattar/scribble-air-draw` |
+| Vercel project | `<project>.vercel.app` |
+| GitHub | `webniqueds/scribbleai-draw` |
 | DB | MongoDB Atlas, cluster `cluster0`, DB `neonair` |
 | CDN | jsdelivr/unpkg for MediaPipe |
 | Checkout | `https://checkout.razorpay.com/v1/checkout.js` |
@@ -554,7 +554,7 @@ node server/promote.js <email> <role|user|admin|superadmin>
 
 ## C7. Known accounts / data (for testing)
 - Paid test user: `user_3JG4UeVR2X8ZdAatIuCQYMgYVYk` ("Diablo") — paid monthly once; status may now be cancelled.
-- Free test accounts: `user_3IXmc6awk4o3CIgYn0bcWsP7BrE`, `user_3IY4LSKE5a5G9KJ4Q3ijBSGU46g` (both "Aditya").
+- Free test accounts: `user_3IXmc6awk4o3CIgYn0bcWsP7BrE`, `user_3IY4LSKE5a5G9KJ4Q3ijBSGU46g` (redacted).
 - Plans seeded: `free`, `monthly` ₹99, `yearly` ₹999.
 - Superadmin email: see `SUPERADMIN_EMAIL` in local `.env`.
 

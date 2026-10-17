@@ -121,5 +121,4 @@ unchanged.
   vercel alias set <deployment-url> scribble-ai.vercel.app
   ```
 
-- Vercel project: `scribble-hcfo26h6q-adityas-projects-cf1e02fd.vercel.app`
-  (see `vercel.json`, `.vercel/project.json`).
+- Vercel project: `<project>.vercel.app` (see `vercel.json`, `.vercel/project.json`).
