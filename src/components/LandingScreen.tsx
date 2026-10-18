@@ -15,6 +15,8 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { DEFAULT_FREE_PLAN, DEFAULT_PLAN_PAYLOAD, FEATURE_CATALOG, galleryLabel } from '../lib/plans';
+import { Link } from '../lib/router';
+import { ROUTES, SITE } from '../lib/site';
 
 interface Props {
   onGetStarted: () => void;
@@ -100,12 +102,17 @@ export default function LandingScreen({ onGetStarted }: Props) {
     <div className="lp-shell">
       {/* ── nav ── */}
       <header className="lp-nav">
-        <div className="lp-brand">
+        <Link to={ROUTES.home} className="lp-brand">
           <span className="lp-mark">
             <Hand size={17} strokeWidth={2.2} />
           </span>
           Scribble Air Draw
-        </div>
+        </Link>
+        <nav className="lp-navlinks" aria-label="Primary">
+          <Link className="lp-navlink" to={ROUTES.pricing}>Pricing</Link>
+          <Link className="lp-navlink" to={ROUTES.about}>About</Link>
+          <Link className="lp-navlink" to={ROUTES.contact}>Contact</Link>
+        </nav>
         <button type="button" className="lp-btn lp-btn-primary lp-btn-sm" onClick={onGetStarted}>
           Get Started
           <ArrowRight size={15} />
@@ -405,8 +412,29 @@ export default function LandingScreen({ onGetStarted }: Props) {
 
       <footer className="lp-wrap">
         <div className="lp-foot">
-          <span>Scribble Air Draw</span>
-          <span>Draw in the air with nothing but a webcam.</span>
+          <div className="lp-footcol">
+            <span style={{ fontWeight: 700, color: 'var(--forest)' }}>Scribble Air Draw</span>
+            <span className="lp-muted">Draw in the air with nothing but a webcam.</span>
+          </div>
+          <div className="lp-footlinks">
+            <Link to={ROUTES.about}>About us</Link>
+            <Link to={ROUTES.pricing}>Pricing</Link>
+            <Link to={ROUTES.contact}>Contact us</Link>
+            <Link to={ROUTES.terms}>Terms</Link>
+            <Link to={ROUTES.privacy}>Privacy</Link>
+            <Link to={ROUTES.refundPolicy}>Refunds</Link>
+          </div>
+        </div>
+        <div className="lp-legal">
+          <span>
+            © {SITE.copyrightYear} {SITE.company}. All rights reserved.
+          </span>
+          <span>
+            A product of{' '}
+            <a href={SITE.companyUrl} target="_blank" rel="noreferrer noopener">
+              {SITE.brandLong}
+            </a>
+          </span>
         </div>
       </footer>
     </div>

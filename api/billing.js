@@ -5,6 +5,7 @@ import { requireUser } from '../src/lib/serverAuth.js';
 import { planCollection, profileCollection } from '../src/lib/mongodb.js';
 import { PERIOD_MS } from '../api-lib/plans.js';
 import { ensurePlans } from '../api-lib/catalog.js';
+import { PLAN_ITEM_NAMES, asPaidPlan, billingNotes, receiptFor } from '../api-lib/planSlugs.js';
 
 // Consolidated Razorpay billing endpoint. On Vercel each rewrite below maps a
 // legacy path to this handler with a ?route= query param:
@@ -56,7 +57,13 @@ async function createOrder(request, response) {
   }
 
   await ensurePlans();
-  const plan = await (await planCollection()).findOne({ id: request.body?.planId, active: true, free: { $ne: true } });
+  // Only the two paid slugs are ever purchasable; the amount is read from the
+  // plan record, never from the request body.
+  const requestedSlug = asPaidPlan(request.body?.planId);
+  if (!requestedSlug) {
+    return response.status(400).json({ error: 'Unknown or disabled plan.' });
+  }
+  const plan = await (await planCollection()).findOne({ id: requestedSlug, active: true, free: { $ne: true } });
   if (!plan) {
     return response.status(400).json({ error: 'Unknown or disabled plan.' });
   }
@@ -66,8 +73,8 @@ async function createOrder(request, response) {
     const order = await razorpay.orders.create({
       amount: plan.price,
       currency: plan.currency || 'INR',
-      receipt: `scribble-air-${user.userId.slice(0, 8)}-${Date.now()}`,
-      notes: { app: 'scribble-air-draw', plan: plan.id },
+      receipt: receiptFor(user.userId),
+      notes: billingNotes(plan.id),
     });
 
     await (await profileCollection()).updateOne(
@@ -99,7 +106,11 @@ async function createSubscription(request, response) {
   }
 
   await ensurePlans();
-  const plan = await (await planCollection()).findOne({ id: request.body?.planId, active: true, free: { $ne: true } });
+  const requestedSlug = asPaidPlan(request.body?.planId);
+  if (!requestedSlug) {
+    return response.status(400).json({ error: 'Unknown or disabled plan.' });
+  }
+  const plan = await (await planCollection()).findOne({ id: requestedSlug, active: true, free: { $ne: true } });
   if (!plan) {
     return response.status(400).json({ error: 'Unknown or disabled plan.' });
   }
@@ -127,12 +138,12 @@ async function createSubscription(request, response) {
         period: plan.period,
         interval: plan.interval,
         item: {
-          name: plan.label,
+          name: PLAN_ITEM_NAMES[plan.id] || plan.label,
           amount: plan.price,
           currency: 'INR',
           description: plan.description,
         },
-        notes: { app: 'scribble-air-draw', plan: plan.id },
+        notes: billingNotes(plan.id),
       });
     }
 
@@ -140,7 +151,7 @@ async function createSubscription(request, response) {
       plan_id: razorpayPlan.id,
       total_count: plan.totalCount,
       customer_notify: 1,
-      notes: { app: 'scribble-air-draw', plan: plan.id },
+      notes: billingNotes(plan.id),
     });
 
     await (await profileCollection()).updateOne(

@@ -3,6 +3,7 @@ import { X, Check, Zap, Sparkles } from 'lucide-react';
 import { useSession } from '@clerk/clerk-react';
 import { useApi } from '../hooks/useApi';
 import { DEFAULT_PLAN_PAYLOAD, FEATURE_CATALOG, type FeatureDef } from '../lib/plans';
+import { BILLING_APP_SLUG, CHECKOUT_MERCHANT_NAME, CHECKOUT_THEME, asPlanSlug } from '../lib/planSlugs';
 
 interface Plan {
   id: string;
@@ -112,11 +113,12 @@ export default function SubscriptionModal({
         order_id: ord.orderId,
         amount: ord.amount,
         currency: ord.currency || 'INR',
-        name: 'Neon Air Draw',
+        name: CHECKOUT_MERCHANT_NAME,
         description: pl.description,
         prefill: { email, name },
         handler,
-        theme: { color: 'var(--emerald)' },
+        notes: { app: BILLING_APP_SLUG, plan: asPlanSlug(pl.id) || pl.id },
+        theme: { color: CHECKOUT_THEME },
         modal: { ondismiss: () => setBusyId(null) },
       });
       r.open();
